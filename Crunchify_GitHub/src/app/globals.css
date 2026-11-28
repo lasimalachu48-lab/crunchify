@@ -1,0 +1,126 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 36 100% 97%;
+    --foreground: 20 29% 16%;
+    --font-outfit: "Outfit", system-ui, sans-serif;
+    --font-calistoga: "Calistoga", Georgia, serif;
+    --primary: #FF6500;
+    --secondary: #FF8A00;
+    --card: #FFFFFF;
+    --border: #F0E3D2;
+    --text-primary: #35251D;
+    --text-secondary: #81746A;
+  }
+
+  /* Universal box-sizing — prevents padding from causing overflow */
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    overflow-x: hidden;
+    max-width: 100%;
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: #FFF9F1;
+    color: #35251D;
+    font-feature-settings: "rlig" 1, "calt" 1;
+    -webkit-tap-highlight-color: transparent;
+    overflow-x: hidden;
+    max-width: 100%;
+    width: 100%;
+    min-height: 100vh;
+    min-height: 100dvh;
+    /* Prevent any child from widening the page */
+    position: relative;
+  }
+
+  /* Every top-level section must stay within 100% width */
+  section, footer, main, nav, aside {
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  header {
+    max-width: 100%;
+  }
+
+  /* Images never exceed their container */
+  img, video, iframe, embed, object {
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* Prevent auto-zoom on iOS Safari when focusing text inputs */
+  @media screen and (max-width: 768px) {
+    input, select, textarea {
+      font-size: 16px !important;
+    }
+  }
+}
+
+/* Custom scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #F8F3EA;
+}
+::-webkit-scrollbar-thumb {
+  background: #D6BE93;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #FF5C00;
+}
+
+/* Hide scrollbar utility */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* ===== MOBILE OVERFLOW FIX (all phone breakpoints) ===== */
+/* On mobile viewports, every container is strictly bounded */
+@media screen and (max-width: 639px) {
+  /* Root-level overflow guard */
+  #__next, [data-nextjs-scroll-focus-boundary] {
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  /* Prevent table overflow on mobile */
+  table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+    max-width: 100%;
+  }
+
+  /* Any grid that uses auto-fit must not overflow */
+  .grid {
+    max-width: 100%;
+  }
+
+  /* All cards must stay within their grid cell */
+  .rounded-3xl, .rounded-4xl {
+    max-width: 100%;
+  }
+
+  /* Prevent overflow in Framer Motion wrappers */
+  [style*="transform"] {
+    max-width: 100%;
+  }
+}
+
